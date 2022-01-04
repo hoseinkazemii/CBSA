@@ -6,5 +6,5 @@ def get_data(**params):
 
 	df = pd.read_csv(data_directory)
 	df.drop(dropped_cols, axis=1, inplace=True)
-	# print(df.head())
+
 	return df

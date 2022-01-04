@@ -23,8 +23,7 @@ def run(**params):
 	df = get_data(**settings)
 	X, Y = split_data(df, **settings)
 	X = tokenize(X,**settings)
-	for sentence in X:
-		remove_space(sentence)
+	X = remove_spaces(X)
 	
 
 if __name__ == '__main__':
