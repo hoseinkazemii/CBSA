@@ -1,4 +1,4 @@
-from .emb_dict import emb_dict
+from .emb_dict_wv import emb_dict_wv
 
 import gensim
 import multiprocessing as mp
@@ -10,7 +10,7 @@ def word2vec(X, **params):
 	skipgram = params.get("skipgram")
 	wv_epochs = params.get("wv_epochs")
 	w2v_dir = params.get("w2v_dir")
-    maxlen = params.get("maxlen")
+	maxlen = params.get("maxlen")
 
 	workers = mp.cpu_count() - 2
 
@@ -23,8 +23,12 @@ def word2vec(X, **params):
 								   			)
 
 	model.build_vocab(X)
-	model.train(X)
+
+	model.train(X, total_examples=model.corpus_count,
+		epochs = wv_epochs,)
+	
 	model.save(w2v_dir)
 
-    index_dict, word_vectors,combined = emb_dict(X = X, model = model, **self.__dict__)
-    return   index_dict, word_vectors, X
+	index_dict, word_vectors = emb_dict_wv(X = X, model = model)
+
+	return   index_dict, word_vectors
