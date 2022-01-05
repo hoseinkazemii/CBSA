@@ -1,2 +1,2 @@
-from .pkl_embeddings import pkl_embeddings
-from .word2vec import word2vec
+from .train_word2vec import train_word2vec
+from .emb_matrix_wv import emb_matrix_wv

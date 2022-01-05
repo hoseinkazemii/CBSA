@@ -17,7 +17,7 @@ def run(**params):
 	"replacements" : replacements,
 	"emb_dimension" : 300,
 	"maxlen" : 100,
-	"min_word_count_wv" :3,
+	"min_word_count_wv" :1,
 	"skipgram" : 0,
 	"wv_epochs" : 5,
 	"window_size" : 5,
@@ -38,11 +38,20 @@ def run(**params):
 	X, Y = split_data(df, **settings)
 	X = tokenize(X, **settings)
 	X = remove_spaces(X)
+	# print((count_num_words(X)))
 	# convert_to_json(X, **settings)
-	index_dict, word_vectors = word2vec(X, **settings)
 	
-	# print(strings)
-	
+	#Option1: Word2Vec
+	index_dict, word_vectors = train_word2vec(X, **settings)
+	vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
+		
+	#Option2: fastText
+
+
+
+
+	X = parsing(X, index_dict, **settings)
+	X = padding(X, **settings)
 
 if __name__ == '__main__':
 	run()
