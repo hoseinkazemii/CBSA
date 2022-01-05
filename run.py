@@ -41,13 +41,13 @@ def run(**params):
 	# print((count_num_words(X)))
 	# convert_to_json(X, **settings)
 	
+
 	#Option1: Word2Vec
 	index_dict, word_vectors = train_word2vec(X, **settings)
 	vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
 		
 	#Option2: fastText
-
-
+	vocab_size, embedding_weights = emb_matrix_fasttext(X, **settings)
 
 
 	X = parsing(X, index_dict, **settings)
