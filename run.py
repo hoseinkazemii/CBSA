@@ -13,7 +13,9 @@ def run(**params):
 	"ft_dir" : "./embedding/my_embeddings/",
 	"dropped_cols" : ["docid", "author*", "pubname", "region"],
 	"inde_var" : "content",
-	"de_var" : "share_count",
+	"de_var" : "like_count",
+	"Y_segments" : 2,
+	"Y_quantile" : 0.5,
 	"replacements" : replacements,
 	"emb_dimension" : 300,
 	"maxlen" : 100,
@@ -35,11 +37,12 @@ def run(**params):
 
 
 
-	}
 
+	}
 
 	df = get_data(**settings)
 	X, Y = split_data(df, **settings)
+	Y = segment_Y(Y, **settings)
 	X = tokenize(X, **settings)
 	X = remove_spaces(X)
 	# print((count_num_words(X)))
