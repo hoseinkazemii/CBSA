@@ -7,3 +7,4 @@ from .parsing import parsing
 from .padding import padding
 from .train_test import train_test
 from .plot_length import plot_length
+from .evaluate_classification import evaluate_classification

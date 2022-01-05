@@ -37,6 +37,7 @@ def run(**params):
 	"train_epochs" : 10,
 	"batch_size" : 2,
 	"val_split" : 0.2,
+	"model_verbose" : 2,
 
 
 
@@ -73,7 +74,8 @@ def run(**params):
 
 	X_train, X_test, Y_train, Y_test = train_test(X, Y, **settings)
 	model = construct_network(embedding_weights, vocab_size, **settings)
-	train_model(model, X_train, X_test, Y_train, Y_test, **settings)
+	train_model(model, X_train, Y_train, **settings)
+	evaluate_classification(model, X_test, Y_test, **settings)
 
 
 if __name__ == '__main__':

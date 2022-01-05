@@ -1,10 +1,11 @@
 from tensorflow.keras.optimizers import Adam
 
-def train_model(model, X_train, X_test, Y_train, Y_test, **params):
+def train_model(model, X_train, Y_train, **params):
 	lr = params.get("lr")
 	train_epochs = params.get("train_epochs")
 	batch_size = params.get("batch_size")
 	val_split = params.get("val_split")
+	model_verbose = params.get("model_verbose")
 
 	opt = Adam(learning_rate = lr)
 
@@ -12,4 +13,5 @@ def train_model(model, X_train, X_test, Y_train, Y_test, **params):
              metrics = ['accuracy'])
 
 	model.fit(X_train, Y_train, epochs = train_epochs,
-                batch_size = batch_size, validation_split = val_split)
+                batch_size = batch_size, validation_split = val_split,
+                verbose = model_verbose)
