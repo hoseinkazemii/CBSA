@@ -20,13 +20,13 @@ def emb_matrix_fasttext(X, vocab_size = 3375+1, **params):
 
     tokenizer = Tokenizer()
     tokenizer.fit_on_texts(X)
-
+    w2indx = tokenizer.word_index
     # create a weight matrix for words in training docs
     embedding_matrix = np.zeros((vocab_size, emb_dimension))
 
     word_embedding = _load_embedding(**params)
 
-    for word, index in tokenizer.word_index.items():
+    for word, index in w2indx.items():
         #word is the key and i is the value of tokenizer.word_index.items() dictionary
         embedding_vector = word_embedding[emb_dimension].get(word)
         
@@ -35,5 +35,5 @@ def emb_matrix_fasttext(X, vocab_size = 3375+1, **params):
                     #words not found in embedding index will be all-zeros
                     embedding_matrix[index] = embedding_vector
 
-    return vocab_size, embedding_matrix
+    return vocab_size, w2indx, embedding_matrix
 

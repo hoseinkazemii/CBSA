@@ -1,4 +1,5 @@
 from DataLoader import *
+from MLModels import *
 from utils import *
 from embedding import *
 
@@ -28,6 +29,14 @@ def run(**params):
 	"plot_stop" : 400,
 	"plot_step" : 4,
 	"random_state" : 42,
+	"pretrained_emb" : True,
+	"dropout" : 0.2,
+	"rec_dropout" : 0.25,
+	"LSTM_cells" : [16, 32, 16],
+	"lr": 0.001,
+	"train_epochs" : 10,
+	"batch_size" : 2,
+	"val_split" : 0.2,
 
 
 
@@ -56,13 +65,16 @@ def run(**params):
 	vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
 		
 	#Option2: fastText
-	vocab_size, embedding_weights = emb_matrix_fasttext(X, **settings)
-
+	# vocab_size, index_dict, embedding_weights = emb_matrix_fasttext(X, **settings)
+	
 
 	X = parsing(X, index_dict, **settings)
 	X = padding(X, **settings)
 
 	X_train, X_test, Y_train, Y_test = train_test(X, Y, **settings)
+	model = construct_network(embedding_weights, vocab_size, **settings)
+	train_model(model, X_train, X_test, Y_train, Y_test, **settings)
+
 
 if __name__ == '__main__':
 	run()
