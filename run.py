@@ -27,6 +27,7 @@ def run(**params):
 	"plot_start" : 0,
 	"plot_stop" : 400,
 	"plot_step" : 4,
+	"random_state" : 42,
 
 
 
@@ -47,19 +48,21 @@ def run(**params):
 	X = remove_spaces(X)
 	# print((count_num_words(X)))
 	# convert_to_json(X, **settings)
-	plot_length(X, **settings)
+	# plot_length(X, **settings)
 	
 
 	#Option1: Word2Vec
-	# index_dict, word_vectors = train_word2vec(X, **settings)
-	# vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
+	index_dict, word_vectors = train_word2vec(X, **settings)
+	vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
 		
 	#Option2: fastText
-	# vocab_size, embedding_weights = emb_matrix_fasttext(X, **settings)
+	vocab_size, embedding_weights = emb_matrix_fasttext(X, **settings)
 
 
-	# X = parsing(X, index_dict, **settings)
-	# X = padding(X, **settings)
+	X = parsing(X, index_dict, **settings)
+	X = padding(X, **settings)
+
+	X_train, X_test, Y_train, Y_test = train_test(X, Y, **settings)
 
 if __name__ == '__main__':
 	run()
