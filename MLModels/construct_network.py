@@ -23,7 +23,10 @@ def construct_network(embedding_weights, vocab_size,**params):
 		model = Sequential()
 
 		model.add(Embedding(vocab_size, emb_dimension, input_length = maxlen))
-		model.add(LSTM(LSTM_cells[0], dropout = dropout, recurrent_dropout = rec_dropout, return_sequences = False))
+		# model.add(LSTM(LSTM_cells[0], dropout = dropout, recurrent_dropout = rec_dropout, return_sequences = True))
+		# model.add(LSTM(LSTM_cells[1], dropout = dropout, recurrent_dropout = rec_dropout, return_sequences = True))
+		# model.add(LSTM(LSTM_cells[2], dropout = dropout, recurrent_dropout = rec_dropout, return_sequences = False))
+		model.add(Dense(16, activation = 'relu'))
 		model.add(Dense(1, activation = 'sigmoid'))
 		# model.summary()
 

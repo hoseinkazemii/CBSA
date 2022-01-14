@@ -3,7 +3,6 @@ from MLModels import *
 from utils import *
 from embedding import *
 
-import json
 
 def run(**params):
 	settings = {
@@ -27,6 +26,7 @@ def run(**params):
 	"wv_epochs" : 5,
 	"window_size" : 5,
 	"split_size" : 0.2,
+	"k_nbrs_overs" : 5,
 	"plot_start" : 0,
 	"plot_stop" : 400,
 	"plot_step" : 4,
@@ -55,30 +55,31 @@ def run(**params):
 
 	df = get_data(**settings)
 	df = make_eng_col(df, **settings)
-	# X, Y = split_data(df, **settings)
-	# Y = segment_Y(Y, **settings)
-	# X = tokenize(X, **settings)
-	# X = remove_spaces(X)
+	X, Y = split_data(df, **settings)
+	Y = segment_Y(Y, **settings)
+	X = tokenize(X, **settings)
+	X = remove_spaces(X)
 	# print((count_num_words(X)))
 	# convert_to_json(X, **settings)
 	# plot_length(X, **settings)
 	
 
 	#Option1: Word2Vec
-	# index_dict, word_vectors = train_word2vec(X, **settings)
-	# vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
+	index_dict, word_vectors = train_word2vec(X, **settings)
+	vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
 		
 	#Option2: fastText
 	# vocab_size, index_dict, embedding_weights = emb_matrix_fasttext(X, **settings)
 	
 
-	# X = parsing(X, index_dict, **settings)
-	# X = padding(X, **settings)
+	X = parsing(X, index_dict, **settings)
+	X = padding(X, **settings)
 
-	# X_train, X_test, Y_train, Y_test = train_test(X, Y, **settings)
-	# model = construct_network(embedding_weights, vocab_size, **settings)
-	# train_model(model, X_train, Y_train, **settings)
-	# evaluate_classification(model, X_test, Y_test, **settings)
+	X_train, X_test, Y_train, Y_test = train_test(X, Y, **settings)
+	X_train, Y_train = oversample(X_train, Y_train, **settings)
+	model = construct_network(embedding_weights, vocab_size, **settings)
+	train_model(model, X_train, Y_train, **settings)
+	evaluate_classification(model, X_test, Y_test, **settings)
 
 
 if __name__ == '__main__':
