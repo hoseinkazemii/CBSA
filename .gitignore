@@ -130,6 +130,7 @@ dmypy.json
 
 *.csv
 *.xlsx
+*.pdf
 
 *.zip
 cc.zh.300.bin
