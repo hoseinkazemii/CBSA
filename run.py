@@ -82,5 +82,13 @@ def run(**params):
 	evaluate_classification(model, X_test, Y_test, **settings)
 
 
+	#option3: BERT
+	df = get_data(**settings)
+	df = make_eng_col(df, **settings)
+	X, Y = split_data(df, **settings)
+	Y = segment_Y(Y, **settings)
+
+
+
 if __name__ == '__main__':
 	run()

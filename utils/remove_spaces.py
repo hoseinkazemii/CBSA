@@ -1,6 +1,6 @@
 
 def _remove_space(_list,**params):
-	removements=['', ' ',]
+	removements = ['', ' ',]
 
 	for obj in removements:
 

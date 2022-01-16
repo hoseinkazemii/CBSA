@@ -1,4 +1,3 @@
-import jieba
 
 def _replace_all(sentence, replacements):
     
@@ -8,14 +7,13 @@ def _replace_all(sentence, replacements):
     return sentence
 
 
-def tokenize(X, **params):
-	tokenized = []
-
+def clean_text(X, **params):
 	replacements = params.get("replacements")
+		
+	sentences = []
 
 	for sentence in list(X):
 		sentence = _replace_all(sentence, replacements)
+		sentences.append(sentence)
 
-		tokenized.append(jieba.lcut(sentence, cut_all=True))
-
-	return tokenized
+	return sentences
