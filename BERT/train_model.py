@@ -15,41 +15,41 @@ def train_model(model, train_dataloader, cross_entropy, optimizer, **params):
 	# iterate over batches
 	for step, batch in enumerate(train_dataloader):
 
-	# progress update after every 50 batches.
-	# if step % 50 == 0 and not step == 0:
-	#   print('  Batch {:>5,}  of  {:>5,}.'.format(step, len(train_dataloader)))
+		# progress update after every 50 batches.
+		# if step % 50 == 0 and not step == 0:
+		#   print('  Batch {:>5,}  of  {:>5,}.'.format(step, len(train_dataloader)))
 
-	# push the batch to gpu
-	batch = [r.to(device) for r in batch]
+		# push the batch to gpu
+		batch = [r.to(device) for r in batch]
 
-	sent_id, mask, labels = batch
+		sent_id, mask, labels = batch
 
-	# clear previously calculated gradients 
-	model.zero_grad()
+		# clear previously calculated gradients 
+		model.zero_grad()
 
-	# get model predictions for the current batch
-	preds = model(sent_id, mask)
+		# get model predictions for the current batch
+		preds = model(sent_id, mask)
 
-	# compute the loss between actual and predicted values
-	loss = cross_entropy(preds, labels)
+		# compute the loss between actual and predicted values
+		loss = cross_entropy(preds, labels)
 
-	# add on to the total loss
-	total_loss = total_loss + loss.item()
+		# add on to the total loss
+		total_loss = total_loss + loss.item()
 
-	# backward pass to calculate the gradients
-	loss.backward()
+		# backward pass to calculate the gradients
+		loss.backward()
 
-	# clip the the gradients to 1.0. It helps in preventing the exploding gradient problem
-	torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+		# clip the the gradients to 1.0. It helps in preventing the exploding gradient problem
+		torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
 
-	# update parameters
-	optimizer.step()
+		# update parameters
+		optimizer.step()
 
-	# model predictions are stored on GPU. So, push it to CPU
-	preds = preds.detach().cpu().numpy()
+		# model predictions are stored on GPU. So, push it to CPU
+		preds = preds.detach().cpu().numpy()
 
-	# append the model predictions
-	total_preds.append(preds)
+		# append the model predictions
+		total_preds.append(preds)
 
 	# compute the training loss of the epoch
 	avg_loss = total_loss / len(train_dataloader)

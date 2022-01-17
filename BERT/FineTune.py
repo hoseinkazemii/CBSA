@@ -22,10 +22,10 @@ class FineTune(nn.Module):
 
     def forward(self, sent_id, mask):
 
-      #pass the inputs to the model  
-      _, X = self.bert(sent_id, attention_mask = mask)
-      
-      X = self.fc1(X)
+      #pass the inputs to the model
+      _, cls_hs = self.bert(sent_id, attention_mask = mask)
+
+      X = self.fc1(cls_hs)
 
       X = self.relu(X)
 

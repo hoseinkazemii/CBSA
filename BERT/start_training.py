@@ -14,7 +14,7 @@ def start_training(model, train_dataloader, val_dataloader, cross_entropy, optim
 	#for each epoch
 	for epoch in range(bert_epochs):
 	     
-	    print('\n Epoch {:} / {:}'.format(epoch + 1, epochs))
+	    print('\n Epoch {:} / {:}'.format(epoch + 1, epoch))
 	    
 	    #train model
 	    train_loss, _ = train_model(model, train_dataloader, cross_entropy, optimizer, **params)

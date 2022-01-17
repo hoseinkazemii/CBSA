@@ -1,4 +1,4 @@
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 def padding(X, **params):
     maxlen = params.get("maxlen")

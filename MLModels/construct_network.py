@@ -1,5 +1,5 @@
-from keras.models import Sequential
-from keras.layers import Embedding, LSTM, Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, LSTM, Dense
 
 
 def construct_network(embedding_weights, vocab_size,**params):
