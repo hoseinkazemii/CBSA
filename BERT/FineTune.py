@@ -1,12 +1,15 @@
 from transformers import AutoModel
 import torch
+import torch.nn as nn
 
 
+from .initialize_bert import initialize_bert
 
+import torch
 
 class FineTune(nn.Module):
 		
-    def __init__(self, bert, checkpoint):
+    def __init__(self, bert):
       
       super(FineTune, self).__init__()
 
@@ -35,7 +38,3 @@ class FineTune(nn.Module):
       X = self.sigmoid(X)
 
       return X
-
-
-
-	bert = AutoModel.from_pretrained('bert-base-uncased')
