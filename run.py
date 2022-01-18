@@ -9,6 +9,7 @@ def run(**params):
 	settings = {
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"chin_emb_dir" : "./embedding/cc.zh.300.bin",
+	"stop_words_dir" : "./utils/stopwords-zh.json",
 	"corpus_dir" : "corpus.json",
 	"w2v_dir" : "./embedding/my_embeddings/w2v_model.pkl",
 	"ft_dir" : "./embedding/my_embeddings/",
@@ -43,27 +44,29 @@ def run(**params):
 	"batch_size" : 2,
 	"val_split" : 0.2,
 	"model_verbose" : 2,
-	# "checkpoint" : "hfl/chinese-bert-wwm-ext",
+	"checkpoint" : "hfl/chinese-bert-wwm-ext",
 	# "checkpoint": "bert-base-chinese",
-	"checkpoint": "uer/roberta-base-finetuned-chinanews-chinese",
+	# "checkpoint": "uer/roberta-base-finetuned-chinanews-chinese",
 	"bert_padding" : 512,
 
 
 
 	}
 
-	df = get_data(**settings)
-	df = make_eng_col(df, **settings)
-	X, Y = split_data(df, **settings)
-	Y = segment_Y(Y, **settings)
-	X = tokenize(X, **settings)
-	X = remove_spaces(X)
+	# df = get_data(**settings)
+	# df = make_eng_col(df, **settings)
+	# df = dropp_content_null(df, **settings)
+	# X, Y = split_data(df, **settings)
+	# Y = segment_Y(Y, **settings)
+	# X = tokenize(X, **settings)
+	# X = remove_spaces(X)
+	# X = remove_stop_words(X, **settings)
 	# print((count_num_words(X)))
-	convert_to_json(X, **settings)
+	# convert_to_json(X, **settings)
 	# plot_length(X, **settings)
 
 	#Option1: Word2Vec
-	index_dict, word_vectors = train_word2vec(X, **settings)
+	# index_dict, word_vectors = train_word2vec(X, **settings)
 	# vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
 		
 	# Option2: fastText
@@ -84,6 +87,7 @@ def run(**params):
 	#option3: BERT
 	# df = get_data(**settings)
 	# df = make_eng_col(df, **settings)
+	# df = dropp_content_null(df, **settings)
 	# X, Y = split_data(df, **settings)
 	# Y = segment_Y(Y, **settings)
 	# X = clean_text(X, **settings)
