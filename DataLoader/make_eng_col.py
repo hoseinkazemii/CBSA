@@ -3,6 +3,8 @@ from ._scaler import _scaler
 def make_eng_col(df, **params):
 	eng_cols = params.get("eng_cols")
 
+	print('adding engagement column')
+
 	for col in eng_cols.keys():
 		df[col] = df[col].fillna(value = 0)
 

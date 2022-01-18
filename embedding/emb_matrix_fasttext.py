@@ -18,6 +18,8 @@ def _load_embedding(**params):
 def emb_matrix_fasttext(X, vocab_size = 3375+1, **params):
     emb_dimension = params.get("emb_dimension")
 
+    print('creating embedding matrix')
+
     tokenizer = Tokenizer()
     tokenizer.fit_on_texts(X)
     w2indx = tokenizer.word_index

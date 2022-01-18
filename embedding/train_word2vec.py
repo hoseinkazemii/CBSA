@@ -12,6 +12,8 @@ def train_word2vec(X, **params):
 	w2v_dir = params.get("w2v_dir")
 	maxlen = params.get("maxlen")
 
+	print("training word2vec model")
+
 	workers = mp.cpu_count() - 2
 
 	wv_model = gensim.models.word2vec.Word2Vec(sentences = X,

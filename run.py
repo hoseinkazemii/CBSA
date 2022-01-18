@@ -52,13 +52,15 @@ def run(**params):
 
 
 	}
-
-	# df = get_data(**settings)
-	# df = make_eng_col(df, **settings)
-	# df = dropp_content_null(df, **settings)
-	# X, Y = split_data(df, **settings)
-	# Y = segment_Y(Y, **settings)
+	import pandas as pd
+	df = get_data(**settings)
+	df = make_eng_col(df, **settings)
+	df = drop_content_null(df, **settings)
+	X, Y = split_data(df, **settings)
+	Y = segment_Y(Y, **settings)
+	X = tokenizerr(X, **settings)
 	# X = tokenize(X, **settings)
+	# X = tokenize_parallel(X, **settings)
 	# X = remove_spaces(X)
 	# X = remove_stop_words(X, **settings)
 	# print((count_num_words(X)))
@@ -111,3 +113,4 @@ def run(**params):
 
 if __name__ == '__main__':
 	run()
+	print("Done")

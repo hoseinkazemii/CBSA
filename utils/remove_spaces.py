@@ -1,5 +1,8 @@
 
 def _remove_space(_list,**params):
+
+	print("cleaning text")
+	
 	removements = ['', ' ',]
 
 	for obj in removements:

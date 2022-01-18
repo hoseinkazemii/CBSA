@@ -2,6 +2,8 @@ import numpy as np
 
 def emb_matrix_wv(index_dict, word_vectors, **params):
     emb_dimension = params.get('emb_dimension')
+
+    print("creating embedding matrix")
     
     vocab_size = len(index_dict) + 1
 
