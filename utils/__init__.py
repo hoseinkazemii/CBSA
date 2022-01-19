@@ -1,4 +1,4 @@
-from .tokenize import tokenize
+from ._tokenize import tokenize
 from .dicts_and_lists import *
 from .remove_spaces import remove_spaces
 from .convert_to_json import convert_to_json
@@ -11,5 +11,3 @@ from .evaluate_classification import evaluate_classification
 from .oversample import oversample
 from .split_val_test import split_val_test
 from .remove_stop_words import remove_stop_words
-from .tokenize_parallel import tokenize_parallel
-from .tokenizerr import tokenizerr

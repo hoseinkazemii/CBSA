@@ -7,6 +7,8 @@ from BERT import *
 
 def run(**params):
 	settings = {
+	"n_cores": 3,
+	"n_sample": 100,
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"chin_emb_dir" : "./embedding/cc.zh.300.bin",
 	"stop_words_dir" : "./utils/stopwords-zh.json",
@@ -48,19 +50,16 @@ def run(**params):
 	# "checkpoint": "bert-base-chinese",
 	# "checkpoint": "uer/roberta-base-finetuned-chinanews-chinese",
 	"bert_padding" : 512,
-
-
-
 	}
-	import pandas as pd
+
+
 	df = get_data(**settings)
 	df = make_eng_col(df, **settings)
 	df = drop_content_null(df, **settings)
 	X, Y = split_data(df, **settings)
 	Y = segment_Y(Y, **settings)
-	X = tokenizerr(X, **settings)
-	# X = tokenize(X, **settings)
-	# X = tokenize_parallel(X, **settings)
+	X = tokenize(X, **settings)
+
 	# X = remove_spaces(X)
 	# X = remove_stop_words(X, **settings)
 	# print((count_num_words(X)))
