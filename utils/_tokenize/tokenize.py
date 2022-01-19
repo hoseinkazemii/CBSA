@@ -17,18 +17,10 @@ def tokenize(X, **params):
 
 	X = _replace_bad_chars(X, replacements)
 
-	print (X)
-	raise ValueError
-
 	if n_cores == 1:
 		tokenized = _clean_and_tokenize_samples(X, replacements)
 
 	else:
 		tokenized = _clean_and_tokenize_samples_parallel(X, **params)
-
-
-	print (tokenized)
-
-	raise ValueError
 
 	return tokenized

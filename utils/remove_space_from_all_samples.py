@@ -1,8 +1,6 @@
 
-def _remove_space(_list,**params):
+def _remove_space_from_tokenized_sentence(_list,**params):
 
-	print("cleaning text")
-	
 	removements = ['', ' ',]
 
 	for obj in removements:
@@ -13,11 +11,13 @@ def _remove_space(_list,**params):
 	return _list
 
 
-def remove_spaces(X, **params):
+def remove_space_from_all_samples(X, **params):
 	sentences = []
 
+	print("cleaning text")
+
 	for sentence in X:
-		_remove_space(sentence)
+		_remove_space_from_tokenized_sentence(sentence)
 		sentences.append(sentence)
 
 	return sentences

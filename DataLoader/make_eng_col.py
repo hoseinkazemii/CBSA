@@ -5,9 +5,6 @@ def make_eng_col(df, **params):
 
 	print('adding engagement column')
 
-	for col in eng_cols.keys():
-		df[col] = df[col].fillna(value = 0)
-
 	for col, coef in eng_cols.items():
 		df[col] =  _scaler(df[col])
 		df[col] = df[col] * coef

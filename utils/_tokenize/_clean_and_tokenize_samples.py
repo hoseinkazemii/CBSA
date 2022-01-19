@@ -11,7 +11,8 @@ def _clean_and_tokenize_samples(X,
 	for idx, sentence in enumerate(X):
 
 		# sentence = _replace_bad_chars(sentence, replacements)
-		tokenized = jieba.lcut(sentence, cut_all=True)
+		tokenized_sentence = jieba.lcut(sentence, cut_all=True)
+		tokenized.append(tokenized_sentence)
 
 	if q_out == None:
 		return tokenized

@@ -7,8 +7,8 @@ from BERT import *
 
 def run(**params):
 	settings = {
-	"n_cores": 3,
-	"n_sample": 100,
+	"n_cores": 1,
+	"n_samples": 10,
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"chin_emb_dir" : "./embedding/cc.zh.300.bin",
 	"stop_words_dir" : "./utils/stopwords-zh.json",
@@ -52,18 +52,16 @@ def run(**params):
 	"bert_padding" : 512,
 	}
 
+	load_original_file_and_save_as_tokenized(**settings)
 
-	df = get_data(**settings)
-	df = make_eng_col(df, **settings)
-	df = drop_content_null(df, **settings)
-	X, Y = split_data(df, **settings)
-	Y = segment_Y(Y, **settings)
-	X = tokenize(X, **settings)
+	X, Y = load_tokenized_data(**params)
 
-	# X = remove_spaces(X)
-	# X = remove_stop_words(X, **settings)
+	df = make_eng_col(df, **params)
+	Y = segment_Y(Y, **params)
+
+
 	# print((count_num_words(X)))
-	# convert_to_json(X, **settings)
+	convert_to_json(X, **settings)
 	# plot_length(X, **settings)
 
 	#Option1: Word2Vec

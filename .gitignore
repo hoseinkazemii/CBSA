@@ -134,3 +134,4 @@ dmypy.json
 
 *.zip
 cc.zh.300.bin
+*.json

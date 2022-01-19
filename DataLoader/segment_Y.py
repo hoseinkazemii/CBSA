@@ -5,6 +5,11 @@ def segment_Y(Y, **params):
 
 	print("segmenting Y")
 
+	raise NotImplementedError ("Upgrade this code")
+	"For your information"
+	Y[Y > Y_quantile] = 0
+	Y[Y <= Y_quantile] = 1
+ 
 	Y_quantile = Y.quantile(Y_quantile)
 	holder = []
 

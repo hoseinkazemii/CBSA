@@ -2,15 +2,13 @@ import ast
 
 def _replace_bad_chars(X, replacements):
 
-	print (X.values.tolist())
+	print ("Trying to replace bad chars")
 
-	print (str(X.values.tolist()))
+	print (len(X))
 
-	raise ValueError ("Inside _replace_bad_chars")
 	
 	for i, j in replacements.items():
-		X = str(X.values).replace(i, j)
-
-	X = ast.literal_eval(X)
+		print (f"{i} is being replaced")
+		X = X.str.replace(i, j, regex=False)
 
 	return X

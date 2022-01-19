@@ -45,9 +45,10 @@ def _clean_and_tokenize_samples_parallel(X, **params):
 
 
 	holder = sorted(holder, key=lambda x: x[0])
+	
+	output = []
+	for _, ls in holder:
+		output += ls
 
-	print (holder)
-	raise ValueError
-
-	return holder
+	return output
 

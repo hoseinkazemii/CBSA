@@ -1,6 +1,6 @@
 from ._tokenize import tokenize
 from .dicts_and_lists import *
-from .remove_spaces import remove_spaces
+from .remove_space_from_all_samples import remove_space_from_all_samples
 from .convert_to_json import convert_to_json
 from .count_num_words import count_num_words
 from .parsing import parsing
