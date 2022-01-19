@@ -8,7 +8,7 @@ from BERT import *
 def run(**params):
 	settings = {
 	"n_cores": 1,
-	"n_samples": 10,
+	"n_samples": 200,
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"chin_emb_dir" : "./embedding/cc.zh.300.bin",
 	"stop_words_dir" : "./utils/stopwords-zh.json",
@@ -56,8 +56,8 @@ def run(**params):
 
 	X, Y = load_tokenized_data(**params)
 
-	df = make_eng_col(df, **params)
-	Y = segment_Y(Y, **params)
+	Y = make_eng_col(Y, **settings)
+	Y = segment_Y(Y, **settings)
 
 
 	# print((count_num_words(X)))
@@ -65,22 +65,22 @@ def run(**params):
 	# plot_length(X, **settings)
 
 	#Option1: Word2Vec
-	# index_dict, word_vectors = train_word2vec(X, **settings)
-	# vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
+	index_dict, word_vectors = train_word2vec(X, **settings)
+	vocab_size, embedding_weights = emb_matrix_wv(index_dict, word_vectors, **settings)
 		
 	# Option2: fastText
 	# vocab_size, index_dict, embedding_weights = emb_matrix_fasttext(X, **settings)
 	
 
-	# X = parsing(X, index_dict, **settings)
-	# X = padding(X, **settings)
+	X = parsing(X, index_dict, **settings)
+	X = padding(X, **settings)
 
-	# X_train, X_test, Y_train, Y_test = train_test(X, Y, **settings)
-	# X_train, Y_train = oversample(X_train, Y_train, **settings)
+	X_train, X_test, Y_train, Y_test = train_test(X, Y, **settings)
+	X_train, Y_train = oversample(X_train, Y_train, **settings)
 
-	# model = construct_network(embedding_weights, vocab_size, **settings)
-	# train_model(model, X_train, Y_train, **settings)
-	# evaluate_classification(model, X_test, Y_test, **settings)
+	model = construct_network(embedding_weights, vocab_size, **settings)
+	train_model(model, X_train, Y_train, **settings)
+	evaluate_classification(model, X_test, Y_test, **settings)
 
 
 	#option3: BERT

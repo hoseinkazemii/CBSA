@@ -10,6 +10,8 @@ def construct_network(embedding_weights, vocab_size,**params):
 	rec_dropout = params.get("rec_dropout")
 	LSTM_cells = params.get("LSTM_cells")
 
+	print('constructing the deep neural network network...')
+
 	if pretrained_emb:
 		model = Sequential()
 

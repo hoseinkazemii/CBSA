@@ -1,6 +1,8 @@
 
 def parsing(X, w2indx, **params):
 
+    print("parsing the tokenized sentences...")
+
     holder = []
 
     for sentence in X:

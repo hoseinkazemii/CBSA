@@ -1,4 +1,4 @@
-from .train_model import train_model
+from .train_bert_model import train_bert_model
 from .evaluate import evaluate
 
 def start_training(model, train_dataloader, val_dataloader, cross_entropy, optimizer, **params):

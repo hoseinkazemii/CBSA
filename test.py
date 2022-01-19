@@ -25,22 +25,22 @@
 # 	print(output)
 
 
-import numpy as np
-import pandas as pd
-import torch
-import torch.nn as nn
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-import transformers
-from transformers import AutoModel, BertTokenizerFast
+# import numpy as np
+# import pandas as pd
+# import torch
+# import torch.nn as nn
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import classification_report
+# import transformers
+# from transformers import AutoModel, BertTokenizerFast
 
 
 
-from DataLoader import *
-from MLModels import *
-from BERT import *
-from utils import *
-from embedding import *
+# from DataLoader import *
+# from MLModels import *
+# from BERT import *
+# from utils import *
+# from embedding import *
 
 
 # def run(**params):
@@ -121,15 +121,24 @@ from embedding import *
 
 
 # if __name__ == '__main__':
-# 	run()
+# # 	run()
 
 
 
-list_1 = [1,2,3]
-list_2 = [4,5]
+# list_1 = [1,2,3]
+# list_2 = [4,5]
 
-list_1.extend(list_2)
-print(list_1)
+# list_1.extend(list_2)
+# print(list_1)
+
+
+
+# a = np.array([-0.40090664,  1.72142127,  0.43242669, -0.40090664,  0.63822304, -0.40090664, -0.40090664, -0.40090664, -0.40090664, -0.38663118])
+# print(len(a))
+# Y_quantile = np.quantile(a, 0.5, axis = 0)
+
+# print(Y_quantile)
+
 
 
 

@@ -1,3 +1,4 @@
+import numpy as np
 
 def segment_Y(Y, **params):
 	Y_segments = params.get("Y_segments")
@@ -5,19 +6,12 @@ def segment_Y(Y, **params):
 
 	print("segmenting Y")
 
-	raise NotImplementedError ("Upgrade this code")
-	"For your information"
-	Y[Y > Y_quantile] = 0
-	Y[Y <= Y_quantile] = 1
- 
-	Y_quantile = Y.quantile(Y_quantile)
-	holder = []
+	Y = np.array(Y)
+	Y = np.hstack(Y)
 
-	for value in Y:
+	Y_quantile = np.quantile(Y, Y_quantile, axis = 0)
 
-		if value <= Y_quantile:
-			holder.append(0)
-		else:
-			holder.append(1)
+	Y[Y > Y_quantile] = 1
+	Y[Y <= Y_quantile] = 0
 
-	return holder
+	return Y

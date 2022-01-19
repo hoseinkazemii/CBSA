@@ -7,6 +7,8 @@ def train_model(model, X_train, Y_train, **params):
 	val_split = params.get("val_split")
 	model_verbose = params.get("model_verbose")
 
+	print("training neural network...")
+
 	opt = Adam(learning_rate = lr)
 
 	model.compile(optimizer = opt, loss = 'binary_crossentropy',
