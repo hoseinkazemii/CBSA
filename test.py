@@ -144,5 +144,13 @@
 # a = np.random.randint(low = 0, high = 512)
 # print(a)
 
+# import re
 
+# a = 'star 5'
 
+# x = int(re.search(r'\d+', a).group())
+
+# print(x)
+# i = for i in a = f'star {i}'
+# print(i)
+# a = int(f'star {}')

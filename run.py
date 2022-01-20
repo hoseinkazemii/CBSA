@@ -120,16 +120,19 @@ def run(**params):
 
 
 	#Polarity:
-	df = get_data_by_date(**settings)
-	# df = df.groupby('date')
-	X = get_content(df, **settings)
-	X = tokenize(X, **settings)
-	X = get_keywords(X, **settings)
-	X = contents_to_str(X, **settings)
-	X_label, X_score = content_to_polarity(X, **settings)
-	polarity_to_df(X_label, X_score, **settings)
+	# df = get_data_by_date(**settings)
+	# X = get_content(df, **settings)
+	# X = tokenize(X, **settings)
+	# X = get_keywords(X, **settings)
+	# X = contents_to_str(X, **settings)
+	# X_label, X_score = content_to_polarity(X, **settings)
+	# polarity_to_df(X_label, X_score, **settings)
 	# Y = get_hsi(**settings)
 	# Y = scaler(Y, **settings)
+	df = load_polarity(**settings)
+
+	print(df)
+
 
 
 
