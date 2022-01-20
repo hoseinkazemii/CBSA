@@ -8,7 +8,7 @@ from Polarity import *
 
 def run(**params):
 	settings = {
-	"n_cores": 1,
+	"n_cores": 4,
 	"n_samples": 200,
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"hsi_dir" : "./Data/HSI.csv",
@@ -18,6 +18,7 @@ def run(**params):
 	"w2v_dir" : "./embedding/my_embeddings/w2v_model.pkl",
 	"ft_dir" : "./embedding/my_embeddings/",
 	"keywords_dir" : "./Data/financial_keywords.json",
+	"polarity_dir" : "./Data/polarity.csv",
 	"dropped_cols" : ["docid", "author*", "pubname", "region"],
 	"inde_var" : "content",
 	"eng_cols" : {"comment_count" : 0.25, "like_count" : 0.25, 
@@ -120,13 +121,15 @@ def run(**params):
 
 	#Polarity:
 	df = get_data_by_date(**settings)
+	# df = df.groupby('date')
 	X = get_content(df, **settings)
 	X = tokenize(X, **settings)
 	X = get_keywords(X, **settings)
 	X = contents_to_str(X, **settings)
-	X = content_to_polarity(X, **settings)
-	Y = get_hsi(**settings)
-	Y = scaler(Y, **settings)
+	X_label, X_score = content_to_polarity(X, **settings)
+	polarity_to_df(X_label, X_score, **settings)
+	# Y = get_hsi(**settings)
+	# Y = scaler(Y, **settings)
 
 
 

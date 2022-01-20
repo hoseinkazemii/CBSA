@@ -5,3 +5,4 @@ from .get_hsi import get_hsi
 from .scaler import scaler
 from .content_to_polarity import content_to_polarity
 from .contents_to_str import contents_to_str
+from .polarity_to_df import polarity_to_df

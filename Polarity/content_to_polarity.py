@@ -6,7 +6,8 @@ def content_to_polarity(X, **params):
 	
 	classifier = pipeline('sentiment-analysis', model = sentiment_checkpoint)
 
-	holder = []
+	X_label = []
+	X_score = []
 	counter = 0
 
 	for idx, sentence in enumerate(X):
@@ -16,12 +17,17 @@ def content_to_polarity(X, **params):
 				print(f'got polarity of {idx} contents')
 
 			output = classifier(sentence)
-			holder.append(output[0]['label'])
+			X_label.append(output[0]['label'])
+			X_score.append(output[0]['score'])
 		
-		except:
+		except Exception as e:
+			print(sentence)
+			print('**************************************',type(sentence))
+			print(e)
+			raise ValueError
 			counter += 1
 			pass
 
 	print(f"couldn't got polarity of {counter} sentences, because of their length")
 
-	return holder
+	return X_label, X_score

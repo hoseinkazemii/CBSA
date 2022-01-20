@@ -12,6 +12,7 @@ def get_data_by_date(**params):
 
 	for idx, dateti in enumerate(df['pubdate']):
 		df.loc[idx,'time'] = dateti.time()
+	
 
 	df = df.loc[:, ['date','time','content']]
 
