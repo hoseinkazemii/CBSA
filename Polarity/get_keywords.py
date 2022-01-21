@@ -1,6 +1,5 @@
 import json
 
-
 def get_keywords(X, **params):
 	keywords_dir = params.get("keywords_dir")
 

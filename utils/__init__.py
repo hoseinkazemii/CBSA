@@ -1,4 +1,5 @@
 from ._tokenize import tokenize
+from ._replace_bad_chars import _replace_bad_chars
 from .dicts_and_lists import *
 from .remove_space_from_all_samples import remove_space_from_all_samples
 from .convert_to_json import convert_to_json

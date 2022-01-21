@@ -8,7 +8,7 @@ from Polarity import *
 
 def run(**params):
 	settings = {
-	"n_cores": 4,
+	"n_cores": 2,
 	"n_samples": 200,
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"hsi_dir" : "./Data/HSI.csv",
@@ -57,10 +57,6 @@ def run(**params):
 	"bert_padding" : 512,
 
 
-
-
-
-
 	}
 
 	# load_original_file_and_save_as_tokenized(**settings)
@@ -97,7 +93,7 @@ def run(**params):
 	#option3: BERT
 	# df = get_data(**settings)
 	# df = make_eng_col(df, **settings)
-	# df = dropp_content_null(df, **settings)
+	# df = drop_content_null(df, **settings)
 	# X, Y = split_data(df, **settings)
 	# Y = segment_Y(Y, **settings)
 	# X = clean_text(X, **settings)
@@ -120,15 +116,18 @@ def run(**params):
 
 
 	#Polarity:
-	# df = get_data_by_date(**settings)
-	# X = get_content(df, **settings)
-	# X = tokenize(X, **settings)
-	# X = get_keywords(X, **settings)
-	# X = contents_to_str(X, **settings)
-	# X_label, X_score = content_to_polarity(X, **settings)
-	# polarity_to_df(X_label, X_score, **settings)
-	# Y = get_hsi(**settings)
-	# Y = scaler(Y, **settings)
+	df = get_data_by_date(**settings)
+	df = drop_content_null(df, **settings)
+	df = find_polarity_values_for_keywords(df, **settings)
+
+	X = get_content(df, **settings)
+	X = tokenize(X, **settings)
+	X = get_keywords(X, **settings)
+	X = contents_to_str(X, **settings)
+	X_label, X_score = content_to_polarity(X, **settings)
+	polarity_to_df(X_label, X_score, **settings)
+	Y = get_hsi(**settings)
+	Y = scaler(Y, **settings)
 	df = load_polarity(**settings)
 
 	print(df)

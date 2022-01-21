@@ -19,5 +19,4 @@ def contents_to_str(X, **params):
 			list_to_str = ' '.join([str(elem) for elem in content])
 			holder.append(list_to_str)
 
-
 	return holder
