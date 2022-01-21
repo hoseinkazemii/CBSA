@@ -44,9 +44,6 @@ def _get_polarity_of_contents_for_word(df, word, **params):
 	for worker in pool:
 		worker.join()
 
-	print ("---------------------")
-	print (holder)
-
 	df = pd.concat(holder, axis = 0)
 	df.sort_index(inplace = True)
 

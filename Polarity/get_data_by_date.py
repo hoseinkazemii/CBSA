@@ -11,9 +11,9 @@ def get_data_by_date(**params):
 	df['pubdate'] = pd.to_datetime(df['pubdate'])
 
 	df['date'] = df['pubdate'].dt.date
-	df['time'] = df['pubdate'].dt.time
+	# df['time'] = df['pubdate'].dt.time
 
-	df = df.loc[:, ['date','time','content']]
+	df = df.loc[:, ['date', 'content']]
 
 	return df
 

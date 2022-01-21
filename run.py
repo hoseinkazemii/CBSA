@@ -8,8 +8,8 @@ from Polarity import *
 
 def run(**params):
 	settings = {
-	"n_cores": 2,
-	"n_samples": 200,
+	"n_cores": 5,
+	"n_samples": 20,
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"hsi_dir" : "./Data/HSI.csv",
 	"chin_emb_dir" : "./embedding/cc.zh.300.bin",
@@ -119,20 +119,13 @@ def run(**params):
 	df = get_data_by_date(**settings)
 	df = drop_content_null(df, **settings)
 	df = find_polarity_values_for_keywords(df, **settings)
+	save_polarity_to_file(df, **settings)
 
-	X = get_content(df, **settings)
-	X = tokenize(X, **settings)
-	X = get_keywords(X, **settings)
-	X = contents_to_str(X, **settings)
-	X_label, X_score = content_to_polarity(X, **settings)
-	polarity_to_df(X_label, X_score, **settings)
-	Y = get_hsi(**settings)
-	Y = scaler(Y, **settings)
-	df = load_polarity(**settings)
+	# Y = get_hsi(**settings)
+	# Y = scaler(Y, **settings)
+	# df = load_polarity(**settings)
 
-	print(df)
-
-
+	# print(df)
 
 
 if __name__ == '__main__':
