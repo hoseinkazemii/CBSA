@@ -1,4 +1,6 @@
 
 
 def save_polarity_to_file(df, **params):
-	df.to_csv("./Data/Polarities.csv")
+	polarity_dir = params.get("polarity_dir")
+
+	df.to_csv(polarity_dir)

@@ -9,7 +9,7 @@ from Polarity import *
 def run(**params):
 	settings = {
 	"n_cores": 5,
-	"n_samples": 20,
+	"n_samples": 3000,
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"hsi_dir" : "./Data/HSI.csv",
 	"chin_emb_dir" : "./embedding/cc.zh.300.bin",
@@ -18,13 +18,13 @@ def run(**params):
 	"w2v_dir" : "./embedding/my_embeddings/w2v_model.pkl",
 	"ft_dir" : "./embedding/my_embeddings/",
 	"keywords_dir" : "./Data/financial_keywords.json",
-	"polarity_dir" : "./Data/polarity.csv",
+	"polarity_dir" : "./Data/Polarities.csv",
 	"dropped_cols" : ["docid", "author*", "pubname", "region"],
 	"inde_var" : "content",
 	"eng_cols" : {"comment_count" : 0.25, "like_count" : 0.25, 
 				  "share_count" : 0.25, "view_count": 0.25},
 	"de_var" : "engagement",
-	"hsi_selected_var" : "Volume",
+	"hsi_selected_var" : "Close",
 	"Y_segments" : 2,
 	"Y_quantile" : 0.8,
 	"replacements" : replacements,
@@ -120,12 +120,10 @@ def run(**params):
 	df = drop_content_null(df, **settings)
 	df = find_polarity_values_for_keywords(df, **settings)
 	save_polarity_to_file(df, **settings)
-
-	# Y = get_hsi(**settings)
-	# Y = scaler(Y, **settings)
-	# df = load_polarity(**settings)
-
-	# print(df)
+	X = load_polarity(**settings)
+	Y = get_hsi(**settings)
+	Y = scaler(Y, **settings)
+	train_ols(X, Y, **settings)
 
 
 if __name__ == '__main__':
