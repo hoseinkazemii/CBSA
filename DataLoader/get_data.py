@@ -1,5 +1,7 @@
 import pandas as pd
 
+from ._drop_content_null import _drop_content_null
+
 def get_data(**params):
 	data_directory = params.get('data_directory')
 	dropped_cols = params.get('dropped_cols')
@@ -18,5 +20,6 @@ def get_data(**params):
 		df[col] = df[col].fillna(value = 0)
 
 	df.drop(dropped_cols, axis=1, inplace=True)
+	df = _drop_content_null(df)
 
 	return df

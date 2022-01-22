@@ -1,6 +1,6 @@
 import pandas as pd
 
-def drop_content_null(df, **params):
+def _drop_content_null(df, **params):
 
 	print("dropping null values from content column")
 

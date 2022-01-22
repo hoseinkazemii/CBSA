@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 from .get_data import get_data
-from .drop_content_null import drop_content_null
+from ._drop_content_null import _drop_content_null
 from .make_eng_col import make_eng_col
 from .split_data import split_data
 from .segment_Y import segment_Y

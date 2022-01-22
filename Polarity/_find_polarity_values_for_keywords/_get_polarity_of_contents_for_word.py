@@ -6,7 +6,7 @@ import multiprocessing as mp
 from ._get_polarity_of_contents_for_word_process import _get_polarity_of_contents_for_word_process
 
 
-def _get_polarity_of_contents_for_word(df, word, **params):
+def _get_polarity_of_contents_for_word(df, ls_words, **params):
 
 	n_cores = params.get("n_cores")
 
@@ -22,7 +22,7 @@ def _get_polarity_of_contents_for_word(df, word, **params):
 
 		worker = Process(target = _get_polarity_of_contents_for_word_process,
 						args = (tmp_df,
-								word,
+								ls_words,
 								results_queue,))
 
 		pool.append(worker)

@@ -1,8 +1,8 @@
 from snownlp import SnowNLP
 
-def _get_sentiment_of_post(post, words):
+def _get_sentiment_of_post(post, ls_words):
 
-	for word in words:
+	for word in ls_words:
 		if word in post:
 			text = SnowNLP(post)
 			return text.sentiments

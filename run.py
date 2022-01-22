@@ -1,15 +1,15 @@
-from DataLoader import *
-from MLModels import *
-from utils import *
-from embedding import *
-from BERT import *
+from DataLoader.get_data_for_polarity_analysis import get_data_for_polarity_analysis
+# from MLModels import *
+# from utils import *
+# from embedding import *
+# from BERT import *
 from Polarity import *
 
 
 def run(**params):
 	settings = {
-	"n_cores": 5,
-	"n_samples": 3000,
+	"n_cores": 4,
+	"n_samples": 400,
 	"data_directory" : "./Data/analytics_challenge_dataset_ex210911.csv",
 	"hsi_dir" : "./Data/HSI.csv",
 	"chin_emb_dir" : "./embedding/cc.zh.300.bin",
@@ -27,7 +27,6 @@ def run(**params):
 	"hsi_selected_var" : "Close",
 	"Y_segments" : 2,
 	"Y_quantile" : 0.8,
-	"replacements" : replacements,
 	"emb_dimension" : 300,
 	"maxlen" : 100,
 	"min_word_count_wv" :1,
@@ -55,7 +54,6 @@ def run(**params):
 	"sentiment_checkpoint" : "techthiyanes/chinese_sentiment",
 	"covid_checkpoint" : "yaoyinnan/bert-base-chinese-covid19",
 	"bert_padding" : 512,
-
 
 	}
 
@@ -93,7 +91,6 @@ def run(**params):
 	#option3: BERT
 	# df = get_data(**settings)
 	# df = make_eng_col(df, **settings)
-	# df = drop_content_null(df, **settings)
 	# X, Y = split_data(df, **settings)
 	# Y = segment_Y(Y, **settings)
 	# X = clean_text(X, **settings)
@@ -113,17 +110,16 @@ def run(**params):
 	# start_training(model, train_dataloader, val_dataloader, cross_entropy, optimizer, **settings)
 	# predict_test(model, Y_test, **params)
 
-
-
 	#Polarity:
-	df = get_data_by_date(**settings)
-	df = drop_content_null(df, **settings)
-	df = find_polarity_values_for_keywords(df, **settings)
-	save_polarity_to_file(df, **settings)
-	X = load_polarity(**settings)
-	Y = get_hsi(**settings)
-	Y = scaler(Y, **settings)
-	train_ols(X, Y, **settings)
+	df = get_data_for_polarity_analysis(**settings)
+	find_polarity_values_for_keywords(df, **settings)
+	
+
+	# X = load_polarity(**settings)
+	# df = df.groupby("date").mean()
+	# Y = get_hsi(**settings)
+	# Y = scaler(Y, **settings)
+	# train_ols(X, Y, **settings)
 
 
 if __name__ == '__main__':
