@@ -1,11 +1,8 @@
 import pandas as pd
 
 def get_hsi(**params):
-	hsi_dir = params.get("hsi_dir")
-	hsi_selected_var = params.get("hsi_selected_var")
 
-	df = pd.read_csv(hsi_dir)
+	df = pd.read_csv("./Data/HSI.csv", index_col = 0)
+	df.dropna(axis=0, inplace = True)
 
-	Y = df[hsi_selected_var]
-
-	return(Y)
+	return df

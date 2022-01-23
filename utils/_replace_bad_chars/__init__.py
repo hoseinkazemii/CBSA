@@ -1,1 +1,0 @@
-from ._replace_bad_chars import _replace_bad_chars

@@ -1,14 +1,10 @@
 import json
 import ast
+import pickle
 
 def load_tokenized_data(**params):
 
-	with open('./Data/TokenizedX.json', 'r', encoding = "utf-8-sig") as f:
-		data = json.load(f)
-
-	X, Y = data.split("|||||")
-
-	X = ast.literal_eval(X)
-	Y = ast.literal_eval(Y)
-
-	return X, Y
+	with open('./Data/TokenizedX.pkl', 'rb') as f:
+		X = pickle.load(f)
+		
+	return X
